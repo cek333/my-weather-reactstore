@@ -72,23 +72,3 @@ export const expectedState2 = {
   status: 'idle',
   error: ''
 };
-
-export const refreshDataPendingAction = {
-  type: 'weather/refresh/pending',
-  payload: { }
-};
-
-export const refreshDataFulfilledAction = {
-  type: 'weather/refresh/fulfilled',
-  payload: weatherAPIData
-};
-
-export const refreshDataFulfilledActionNoData = {
-  type: 'weather/refresh/fulfilled',
-  payload: null
-};
-
-export const refreshDataRejectedAction = {
-  type: 'weather/refresh/rejected',
-  payload: { }
-};
