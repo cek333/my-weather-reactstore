@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { refreshData } from '../app/store';
+import { useGlobalContext } from '../app/store';
 
 function CityForm() {
-  const dispatch = useDispatch();
-
-  const defaultCity = useSelector(state => state.weather.city);
+  const { state, refreshData } = useGlobalContext();
+  const defaultCity = state.weather.city;
   const [city, setCity] = useState('');
 
   useEffect(() => {
@@ -19,7 +17,7 @@ function CityForm() {
   function handleSubmit(evt) {
     evt.preventDefault();
     if (city) {
-      dispatch(refreshData(city));
+      refreshData(city);
     }
   }
 

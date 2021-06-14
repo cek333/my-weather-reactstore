@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import store from './app/store';
+import { GlobalProvider } from './app/store';
 import App from './App';
 
 import API from './api/API';
@@ -22,9 +21,9 @@ test('UI smoke test', async () => {
   API.refreshWeatherData.mockImplementation(() => Promise.resolve(weatherAPIData));
 
   render(
-    <Provider store={store}>
+    <GlobalProvider>
       <App />
-    </Provider>
+    </GlobalProvider>
   );
   // Check that city doesn't exist in initial render
   expect(screen.queryByText(expectedState.weather.city)).toBeNull();
@@ -34,8 +33,8 @@ test('UI smoke test', async () => {
   // screen.debug();
   // Check other weather data
   expect(screen.getByText(expectedState.weather.description)).toBeInTheDocument();
-  let exp = new RegExp(expectedState.weather.temperature.toString(), 'i');
+  let exp = new RegExp(expectedState.weather.temperature.toString());
   expect(screen.getByText(exp)).toBeInTheDocument();
-  exp = new RegExp(expectedState.weather.windSpeed.toString(), 'i');
+  exp = new RegExp(expectedState.weather.windSpeed.toString());
   expect(screen.getByText(exp)).toBeInTheDocument();
 });

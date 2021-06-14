@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { refreshData } from '../app/store';
+import { useGlobalContext } from '../app/store';
 
 function WeatherInfo() {
-  const dispatch = useDispatch();
-
-  const weather = useSelector(state => state.weather);
-  const timestamp = useSelector(state => state.timestamp);
+  const { state, refreshData } = useGlobalContext();
+  let {
+    weather,
+    timestamp,
+    status,
+    error
+  } = state;
   const city = weather.city ? weather.city : <>&nbsp;</>;
   const description = weather.description ? weather.description : <>&nbsp;</>;
   const date = new Date(timestamp).toDateString();
-  const status = useSelector(state => state.status);
-  const error = useSelector(state => state.error) || <>&nbsp;</>;
+  error = error ? error : <>&nbsp;</>;
 
   // Re-use weather icon to show loading
   let weatherIcon;
@@ -24,7 +25,7 @@ function WeatherInfo() {
   useEffect(() => {
     if (status === 'idle' && weather.city === '') {
       // Detect city and get its weather
-      dispatch(refreshData(''));
+      refreshData('');
     }
   }, []);
 
