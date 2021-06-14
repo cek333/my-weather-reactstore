@@ -1,7 +1,7 @@
 # my-weather-reactstore
 This app detects a user's city and displays the current weather for that city. 
 
-The app is a variation of [this](https://github.com/cek333/my-weather) React/Redux app; Redux has been replaced by a purely React store constructed using `useContext()` and `useReducer()`.
+This app is a variation of [this](https://github.com/cek333/my-weather) React/Redux app, in which Redux has been replaced by a purely React store constructed using `useContext()` and `useReducer()`.
 
 Weather data is obtained from the [OpenWeather API](https://openweathermap.org/api) via an intermediary GraphQL server: [https://github.com/konstantinmuenster/graphql-weather-api](https://github.com/konstantinmuenster/graphql-weather-api)
 
