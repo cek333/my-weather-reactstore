@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# my-weather-reactstore
+This app detects a user's city and displays the current weather for that city. 
 
-## Available Scripts
+This app is a variation of [this](https://github.com/cek333/my-weather) React/Redux app, in which Redux has been replaced by a purely React store constructed using `useContext()` and `useReducer()`.
 
-In the project directory, you can run:
+Weather data is obtained from the [OpenWeather API](https://openweathermap.org/api) via an intermediary GraphQL server: [https://github.com/konstantinmuenster/graphql-weather-api](https://github.com/konstantinmuenster/graphql-weather-api)
 
-### `npm start`
+A user's approximate location is determined using the [InInfo.io API](https://ipinfo.io).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Primitivie UI](https://taniarascia.github.io/primitive/) is used to provide basic styling.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Immer](https://immerjs.github.io/immer/) is used to write immutable state transitions in the reducer. (Immer is used under-the-hood in the Redux Toolkit for the `createSlice()` function.)
 
-### `npm test`
+## Setup
+`npm install`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+In one window, start the graphql-weather-api.
 
-### `npm run build`
+In the my-weather app folder, add a `.env` file and insert your IpInfo.io token:
+```
+REACT_APP_IPINFO_TOKEN=<token>
+```
+(For the purposes of this evaluation, a `.env` file has been checked in.)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Next, start the my-weather app: 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`npm run start`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tests
+`npm run test`
 
-### `npm run eject`
+## Usage
+When the app starts, it will detect your city and display the weather for that city.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Screenshot of App](readme/my-weather-screenshot.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You can click the `Refresh Weather` button to reload the weather data. (Note however, in accordance with the OpenWeather usage guidelinies, new data is only fetched (for the city that's currently displayed) if 10min have elapsed. Otherwise, the existing data will be displayed.)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+To get the weather for a different city, enter the city in the text box and click `Refresh Weather`.
