@@ -36,3 +36,5 @@ When the app starts, it will detect your city and display the weather for that c
 You can click the `Refresh Weather` button to reload the weather data. (Note however, in accordance with the OpenWeather usage guidelinies, new data is only fetched (for the city that's currently displayed) if 10min have elapsed. Otherwise, the existing data will be displayed.)
 
 To get the weather for a different city, enter the city in the text box and click `Refresh Weather`.
+
+Token testing.
