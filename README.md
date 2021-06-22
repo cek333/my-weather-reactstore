@@ -20,7 +20,6 @@ In the my-weather app folder, add a `.env` file and insert your IpInfo.io token:
 ```
 REACT_APP_IPINFO_TOKEN=<token>
 ```
-(For the purposes of this evaluation, a `.env` file has been checked in.)
 
 Next, start the my-weather app: 
 
